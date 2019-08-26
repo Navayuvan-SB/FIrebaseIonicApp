@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="credentialForm">
+
+    <ion-item>
+      <ion-label floating> Email </ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!credentialForm.controls.email.valid  && (credentialForm.controls.email.dirty || submitAttempt)">
+        <p>Please enter a valid Email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Password </ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!credentialForm.controls.password.valid  && (credentialForm.controls.password.dirty || submitAttempt)">
+        <p>Password should be greater than 6 characters.</p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button round outline color="dark" 
+                (click)="onSignIn()" 
+                [disabled]="!credentialForm.valid">
+          SignIn
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button round outline color="danger" (click)="onForgetPassword()">
+          Forget password
+        </button>
+      </ion-col>
+    </ion-row>
+    
+  </form>
+
+</ion-content>
